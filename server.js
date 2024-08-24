@@ -10,7 +10,7 @@ const app = express();
 app.use(cors()); 
 app.use(bodyParser.json());
 
-app.post('/add', async (req, res) => {
+app.post('/addQuery', async (req, res) => {
     try {
       const { title, message } = req.body;
   
@@ -30,7 +30,10 @@ app.post('/add', async (req, res) => {
       res.status(500).json({ error: error.message }); // 500 Internal Server Error for general errors
     }
   });
-
+app.get('/getQuery', async (req, res) => {
+    let data = await port.find();
+    res.send(data);
+})
   app.listen(5000, () => {
     console.log('Server is running on port 5000');
   });
