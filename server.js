@@ -3,7 +3,7 @@ const cors = require('cors');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const port = require("./port")
+const portf = require("./port")
 const URI=process.env.MONGO_URI;
 mongoose.connect(URI);
 const app = express();
@@ -22,7 +22,7 @@ app.post('/addQuery', async (req, res) => {
       }
   
       // Create and save new data
-      const data = new port({ title, message }); // Assuming `port` is the Mongoose model
+      const data = new portf({ title, message }); // Assuming `port` is the Mongoose model
       await data.save();
   
       // Send response
@@ -33,7 +33,7 @@ app.post('/addQuery', async (req, res) => {
     }
   });
 app.get('/getQuery', async (req, res) => {
-    let data = await port.find();
+    let data = await portf.find();
     res.send(data);
 })
   app.listen(5000, () => {
